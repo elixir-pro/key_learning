@@ -7,64 +7,86 @@
     background-color: $color1;
 
     nav {
-      width: 94vw;
-      height: 25vh;
+      padding: 1.5rem;
+      height: 30vh;
       margin: auto;
 
       .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
       }
 
       input {
         margin-top: 2rem;
         width: 100%;
+        height: 40px;
+        border-radius: 2rem;
+        text-align: center;
       }
     }
 
   }
 
-  main{
+  main {
     margin-top: -1.9rem;
     width: 100%;
-    height: 100%;
     border-radius: 2.4rem 2.4rem 0 0;
     background: $color5;
+    padding: 1.4rem;
 
-    h3{
-      width: 90%;
+    h3 {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin: auto;
-      p{
-        color: red;
+      margin-bottom: 1rem;
+
+      span {
+        color: darken($color4, 10);
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: lighten($color3, 30);
       }
     }
 
-    .categories{
+    .categories {
       display: grid;
-      width: 90vw;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+      margin: auto;
+      padding: 0 1rem 0 1rem;
 
-      .category{
-        background: $color2;
-        border-radius: 20px;
+      .category {
+        background: $color1;
+        border-radius: 1rem;
+        height: 8.6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        cursor: pointer;
+        transition: 0.5s;
 
-        img{
-          width: 50px;
-          height: 50px;
+        &:hover{
+          background: lighten($color1, 5);
+
         }
 
-        span{
-          color: black;
+
+        img {
+          width: 60px;
+          height: 60px;
         }
 
-        p{
-          color: black;
+        span {
+          color: white;
+        }
+
+        p {
+          color: #ccc;
         }
       }
     }
