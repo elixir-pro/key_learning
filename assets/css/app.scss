@@ -15,8 +15,18 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-@import "start";
 
+h1 {
+  color: $color4;
+  font-size: 2rem;
+}
+
+p{
+  color: $color5;
+}
+
+@import "start";
+@import "courses";
 
 
 @import "../node_modules/nprogress/nprogress.css";
