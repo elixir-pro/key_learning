@@ -19,6 +19,7 @@ defmodule KeyLearningWeb.Router do
 
     live "/", PageLive, :index
     live "/categories", CategoriesLive, :index
+    live "/course", CourseLive, :index
   end
 
   # Other scopes may use custom stacks.
