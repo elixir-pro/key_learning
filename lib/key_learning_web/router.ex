@@ -34,9 +34,16 @@ defmodule KeyLearningWeb.Router do
 
   # Other scopes may use custom stacks.
   scope "/api", KeyLearningWeb.Api, as: :api do
+    pipe_through :api_authenticated
+
+    resources "/courses", CourseController, except: [:index, :show]
+  end
+
+  scope "/api", KeyLearningWeb.Api, as: :api do
     pipe_through :api
 
     post "/sign_in", SessionController, :create
+    resources "/courses", CourseController, only: [:index, :show]
   end
 
   # Enables LiveDashboard only for development

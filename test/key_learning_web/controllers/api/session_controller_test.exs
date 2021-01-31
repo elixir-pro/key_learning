@@ -1,8 +1,6 @@
 defmodule KeyLearningWeb.Api.SessionControllerTest do
   use KeyLearningWeb.ConnCase, async: true
 
-  alias KeyLearning.Accounts
-  alias KeyLearningWeb.UserAuth
   import KeyLearning.AccountsFixtures
 
   describe "Post /api/session" do

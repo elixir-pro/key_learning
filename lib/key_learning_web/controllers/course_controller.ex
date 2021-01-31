@@ -27,9 +27,6 @@ defmodule KeyLearningWeb.CourseController do
   end
 
   def show(conn, %{"id" => id}) do
-    IO.puts("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    IO.inspect(id)
-    IO.puts("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     course = School.get_course!(id)
     render(conn, "show.html", course: course)
   end
