@@ -38,6 +38,8 @@ defmodule KeyLearningWeb.Api.LectureControllerTest do
   end
 
   describe "create lecture" do
+    setup :register_and_sign_in_user
+
     test "renders lecture when data is valid", %{conn: conn} do
       {:ok, course} =
         School.create_course(%{nome: "Some course name", image_path: "some image path"})
@@ -64,7 +66,7 @@ defmodule KeyLearningWeb.Api.LectureControllerTest do
   end
 
   describe "update lecture" do
-    setup [:create_lecture]
+    setup [:create_lecture, :register_and_sign_in_user]
 
     test "renders lecture when data is valid", %{conn: conn, lecture: %Lecture{id: id} = lecture} do
       {:ok, course} =
@@ -92,7 +94,7 @@ defmodule KeyLearningWeb.Api.LectureControllerTest do
   end
 
   describe "delete lecture" do
-    setup [:create_lecture]
+    setup [:create_lecture, :register_and_sign_in_user]
 
     test "deletes chosen lecture", %{conn: conn, lecture: lecture} do
       conn = delete(conn, Routes.api_lecture_path(conn, :delete, lecture))

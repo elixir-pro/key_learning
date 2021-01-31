@@ -36,7 +36,8 @@ defmodule KeyLearningWeb.Router do
   scope "/api", KeyLearningWeb.Api, as: :api do
     pipe_through :api_authenticated
 
-    resources "/courses", CourseController, except: [:index, :show]
+    resources "/courses", CourseController, except: [:index, :show, :new, :edit]
+    resources "/lectures", LectureController, except: [:index, :show, :new, :edit]
   end
 
   scope "/api", KeyLearningWeb.Api, as: :api do
@@ -44,7 +45,7 @@ defmodule KeyLearningWeb.Router do
 
     post "/sign_in", SessionController, :create
     resources "/courses", CourseController, only: [:index, :show]
-    resources "/lectures", LectureController, except: [:new, :edit]
+    resources "/lectures", LectureController, only: [:index, :show]
   end
 
   # Enables LiveDashboard only for development
