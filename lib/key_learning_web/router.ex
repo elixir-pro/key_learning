@@ -23,13 +23,11 @@ defmodule KeyLearningWeb.Router do
 
   scope "/", KeyLearningWeb do
     pipe_through [:browser, :require_authenticated_user]
-    resources "/courses", CourseController, except: [:index, :show]
   end
 
   scope "/", KeyLearningWeb do
     pipe_through :browser
     live "/", PageLive, :index
-    resources "/courses", CourseController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.

@@ -15,7 +15,6 @@
         <nav role="navigation">
           <%= render "_user_menu.html", assigns %>
           <li><%= link "Root", to: Routes.page_path(@conn, :index) %></li>
-          <li><%= link "Courses", to: Routes.course_path(@conn, :index) %></li>
         </nav>
         <a href="https://phoenixframework.org/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
