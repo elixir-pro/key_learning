@@ -17,6 +17,10 @@ defmodule KeyLearningWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_authenticated do
+    plug KeyLearningWeb.AuthAccessPipelinePlug
+  end
+
   scope "/", KeyLearningWeb do
     pipe_through [:browser, :require_authenticated_user]
     resources "/courses", CourseController, except: [:index, :show]
@@ -29,9 +33,11 @@ defmodule KeyLearningWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", KeyLearningWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", KeyLearningWeb.Api, as: :api do
+    pipe_through :api
+
+    post "/sign_in", SessionController, :create
+  end
 
   # Enables LiveDashboard only for development
   #

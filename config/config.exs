@@ -27,6 +27,15 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :key_learning, KeyLearning.Guardian,
+  issuer: "key_learning",
+  secret_key: "BY8grm00++tVtByLhHG15he/3GlUG0rOSLmP2/2cbIRwdR4xJk1RHvqGHPFuNcF8",
+  ttl: {3, :days}
+
+config :key_learning, KeyLearningWeb.AuthAccessPipelinePlug,
+  module: KeyLearning.Guardian,
+  error_handler: KeyLearningWeb.AuthErrorHandlerPlug
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
