@@ -44,6 +44,7 @@ defmodule KeyLearningWeb.Router do
 
     post "/sign_in", SessionController, :create
     resources "/courses", CourseController, only: [:index, :show]
+    resources "/lectures", LectureController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
