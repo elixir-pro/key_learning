@@ -1,0 +1,29 @@
+.content-view {
+  width: 100vw;
+  height: 100vh;
+  background: $color5;
+
+  header {
+    background-color: $color1;
+
+    nav {
+      padding: 1.5rem;
+      height: 20vh;
+      margin: auto;
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+  }
+
+  main {
+    margin-top: -1.9rem;
+    border-radius: 2.4rem 2.4rem 0 0;
+    background: $color3;
+    padding: 1.4rem;
+  }
+}
