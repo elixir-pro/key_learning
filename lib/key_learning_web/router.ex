@@ -1,6 +1,8 @@
 defmodule KeyLearningWeb.Router do
   use KeyLearningWeb, :router
 
+  import KeyLearningWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,15 +10,23 @@ defmodule KeyLearningWeb.Router do
     plug :put_root_layout, {KeyLearningWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_authenticated do
+    plug KeyLearningWeb.AuthAccessPipelinePlug
+  end
+
+  scope "/", KeyLearningWeb do
+    pipe_through [:browser, :require_authenticated_user]
+  end
+
   scope "/", KeyLearningWeb do
     pipe_through :browser
-
     live "/", PageLive, :index
     live "/categories", CategoriesLive, :index
     live "/course", CourseLive, :index
@@ -24,9 +34,20 @@ defmodule KeyLearningWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", KeyLearningWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", KeyLearningWeb.Api, as: :api do
+    pipe_through :api_authenticated
+
+    resources "/courses", CourseController, except: [:index, :show, :new, :edit]
+    resources "/lectures", LectureController, except: [:index, :show, :new, :edit]
+  end
+
+  scope "/api", KeyLearningWeb.Api, as: :api do
+    pipe_through :api
+
+    post "/sign_in", SessionController, :create
+    resources "/courses", CourseController, only: [:index, :show]
+    resources "/lectures", LectureController, only: [:index, :show]
+  end
 
   # Enables LiveDashboard only for development
   #
@@ -42,5 +63,37 @@ defmodule KeyLearningWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: KeyLearningWeb.Telemetry
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", KeyLearningWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/users/register", UserRegistrationController, :new
+    post "/users/register", UserRegistrationController, :create
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
+    get "/users/reset_password", UserResetPasswordController, :new
+    post "/users/reset_password", UserResetPasswordController, :create
+    get "/users/reset_password/:token", UserResetPasswordController, :edit
+    put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", KeyLearningWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/users/settings", UserSettingsController, :edit
+    put "/users/settings", UserSettingsController, :update
+    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", KeyLearningWeb do
+    pipe_through [:browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :confirm
   end
 end

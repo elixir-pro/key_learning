@@ -3,8 +3,13 @@ defmodule KeyLearningWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    IO.inspect(self())
     {:ok, socket}
   end
 
+  @impl true
+  def render(assigns) do
+    ~L"""
+      Hello World
+    """
+  end
 end
