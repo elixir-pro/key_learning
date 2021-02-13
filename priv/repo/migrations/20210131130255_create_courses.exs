@@ -5,7 +5,7 @@ defmodule KeyLearning.Repo.Migrations.CreateCourses do
     create table(:courses, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :nome, :string
-      add :image_path, :string
+      add :image_path, :text
 
       timestamps()
     end

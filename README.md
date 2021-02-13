@@ -1,20 +1,36 @@
-# KeyLearning
+- Vantagens Remover frameworks  como Js, React, Vue, Angular
+- Websocket connection w/ Join & Click
+- Stateful Channel PRocess = Join, Handle_in
 
-To start your Phoenix server:
+- Serverside Elixir  3 callbacks
+  - mount: status inicial
+  - handle_event: atualiza o estado
+  - render: atualiza o estatos da pagina
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+- Http request SeoFriendly
+- websocket - atualiza outros clients
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+##
+
+phx-click=
+
+handle_event(nome_evento, param, socket)
+socket.assigns
+assign:
+ou usar o update
+socket = updatE(socket, variavel, &(&1 + 10))
+:noreply, socket
+
+
+
+LiveCycle
+
+Endpoint > router > mount > render
+
+
+liveSocket.enableDebug()
+
+

@@ -9,7 +9,7 @@ defmodule KeyLearning.School.Lecture do
     field :duration, :integer
     field :name, :string
     field :video_url, :string
-    belongs_to :course, KeyLearning.School.Course
+    belongs_to :course, KeyLearning.School.Course, foreign_key: :course_id, type: :binary_id
 
     timestamps()
   end
@@ -17,7 +17,7 @@ defmodule KeyLearning.School.Lecture do
   @doc false
   def changeset(lecture, attrs) do
     lecture
-    |> cast(attrs, [:name, :duration, :description, :video_url, :course_id])
-    |> validate_required([:name, :duration, :description, :video_url, :course_id])
+    |> cast(attrs, [:name, :duration, :description, :video_url])
+    |> validate_required([:name, :duration, :description, :video_url])
   end
 end

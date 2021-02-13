@@ -7,6 +7,7 @@ defmodule KeyLearning.School do
   alias KeyLearning.Repo
 
   alias KeyLearning.School.Course
+  alias KeyLearning.School.Lecture
 
   @doc """
   Returns the list of courses.
@@ -17,8 +18,30 @@ defmodule KeyLearning.School do
       [%Course{}, ...]
 
   """
-  def list_courses do
-    Repo.all(Course)
+  def list_courses() do
+    query =
+      from c in Course,
+        join: l in Lecture,
+        on: c.id == l.course_id,
+        group_by: c.id,
+        select: %{c | lectures: count(l.id)}
+
+    Repo.all(query)
+    |> IO.inspect()
+  end
+
+  def list_courses(course) do
+    course = "%#{course}%"
+
+    query =
+      from c in Course,
+        join: l in Lecture,
+        on: c.id == l.course_id,
+        group_by: c.id,
+        where: ilike(c.nome, ^course),
+        select: %{c | lectures: count(l.id)}
+
+    Repo.all(query)
   end
 
   @doc """
@@ -54,6 +77,7 @@ defmodule KeyLearning.School do
   def create_course(attrs \\ %{}) do
     %Course{}
     |> Course.changeset(attrs)
+    |> IO.inspect()
     |> Repo.insert()
   end
 
