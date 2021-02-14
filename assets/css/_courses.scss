@@ -60,6 +60,10 @@
       margin: auto;
       padding: 0 1rem 0 1rem;
 
+      a{
+        text-decoration: none;
+      }
+
       .category {
         background: $color1;
         border-radius: 1rem;

@@ -11,30 +11,23 @@
 
   <main>
     <h3>
-      <span>LiveView</span>
-      <p>10 lessons</p>
+      <span><%= @course.nome %></span>
+      <p><%= length(@course.lectures) %> lessons</p>
     </h3>
 
     <section class="courses">
-      <div class="course">
-          <p>Lorem ipsum dolor sit.</p>
-            <br>
+      <%= for {lecture, index} <- @course.lectures |> Enum.with_index() do %>
+      <%= live_redirect to: Routes.class_path(@socket, :index, lecture), class: "course" do %>
 
-          <div class="class-description">
-            <p>Aula 1</p>
-            <p>5 min </p>
-      </div>
-      </div>
-      <div class="course">
-          <p>Lorem ipsum dolor sit.</p>
-            <br>
+      <p><%= lecture.name %></p>
+      <br>
 
-          <div class="class-description">
-            <p>Aula 1</p>
-            <p>5 min </p>
-          </div>
+      <div class="class-description">
+        <p>Lesson <%= index + 1 %></p>
+        <p><%= lecture.duration %> min </p>
       </div>
-
+      <% end %>
+      <% end %>
     </section>
   </main>
 

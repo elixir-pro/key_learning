@@ -51,6 +51,11 @@
       margin: auto;
       padding: 0 1rem 0 1rem;
 
+      a{
+        text-decoration: none;
+      }
+
+
       .course {
         background: lighten($color4, 20);
         border-radius: 1rem;

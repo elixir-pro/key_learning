@@ -59,7 +59,7 @@ defmodule KeyLearning.School do
 
   """
   def get_course!(id) when is_binary(id) do
-    Repo.get!(Course, id)
+    Repo.get!(Course, id) |> Repo.preload(:lectures)
   end
 
   @doc """

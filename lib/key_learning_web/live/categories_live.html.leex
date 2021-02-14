@@ -31,11 +31,11 @@
 
     <section class="categories">
       <%= for course <- @courses  do %>
-      <div class="category">
+      <%= live_redirect to: Routes.course_path(@socket, :index, course), class: "category" do %>
         <img src="<%= course.image_path %>" alt="<%= course.nome %>">
         <span><%= course.nome %></span>
         <p><%= course.lectures %> lessons</p>
-      </div>
+      <% end %>
       <% end %>
     </section>
   </main>
