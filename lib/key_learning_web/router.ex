@@ -35,7 +35,7 @@ defmodule KeyLearningWeb.Router do
 
   # Other scopes may use custom stacks.
   scope "/api", KeyLearningWeb.Api, as: :api do
-    pipe_through :api_authenticated
+    pipe_through :api
 
     resources "/courses", CourseController, except: [:index, :show, :new, :edit]
     resources "/lectures", LectureController, except: [:index, :show, :new, :edit]

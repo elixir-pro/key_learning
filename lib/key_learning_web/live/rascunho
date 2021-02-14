@@ -1,0 +1,12 @@
+
+broadcast
+course = course |> Repo.preload(:lectures) |> Map.update!(:lectures, &(&1 |> Enum.count()))
+
+[7:20 PM, 2/13/2021] Gustavo Oliveira: https://fontawesome.com/icons/power-off?style=solid
+[7:20 PM, 2/13/2021] Gustavo Oliveira: https://www.youtube.com/watch?v=oq5JCe6Rg-Q
+[7:21 PM, 2/13/2021] Gustavo Oliveira: falta isso:
+[7:21 PM, 2/13/2021] Gustavo Oliveira: https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html
+[7:21 PM, 2/13/2021] Gustavo Oliveira: falta ver erro de broadcast
+colocar temporary assigns
+
+msgs de error

@@ -8,17 +8,20 @@ defmodule KeyLearningWeb.CategoriesLive do
      socket
      |> assign(
        courses: School.list_courses(),
-       search: ""
+       search: "",
+       matches: []
      )}
   end
 
   def handle_event("search", %{"search" => search}, socket) do
+    courses = School.list_courses(search)
     {
       :noreply,
       socket
       |> assign(
-        courses: School.list_courses(search),
-        search: search
+        courses: courses,
+        search: search,
+        matches: courses |> Enum.map(& &1.nome)
       )
     }
   end

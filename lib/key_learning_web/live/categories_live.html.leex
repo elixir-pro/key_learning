@@ -10,11 +10,18 @@
         <input type="search"
                 name="search"
                 value="<%= @search %>"
+                list="matches"
                 autocomplete="off"
                 placeholder="Type to find a class">
       </form>
     </nav>
   </header>
+
+  <datalist id="matches">
+    <%= for match <- @matches do %>
+      <option value="<%= match %>"><%= match %></option>
+    <% end %>
+  </datalist>
 
   <main>
     <h3>
